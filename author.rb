@@ -16,24 +16,29 @@ class Author
     end
 
     def books
-        Book.all.select do |book|
-            book.author == self
+        Publisher.all.select do |publisher|
+            publisher.author == self
         end
     end
 
     def write_book(title, word_count)
-        Book.new(title, word_count, self)
+        book = Book.new(title, word_count)
+        Publisher.new(book, self)
     end
 
     def total_words
-        books.sum { |book| book.word_count }
+        books.sum do |publisher|
+            publisher.book.word_count
+            # binding.pry
+        end
     end
 
     def self.most_words
-        Book.all.min do |a, b|
+        search = Publisher.all.max do |a, b|
             a.author.total_words <=> b.author.total_words
             # binding.pry
         end
+        search.author
     end
 end
 
