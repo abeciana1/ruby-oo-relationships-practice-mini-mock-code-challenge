@@ -2,7 +2,7 @@ require "pry"
 
 class Book
 
-    attr_accessor :title, :word_count
+    attr_reader :title, :word_count
 
     @@all = []
 
@@ -14,5 +14,17 @@ class Book
 
     def self.all
         @@all
+    end
+
+    def publishers
+        Publisher.all.select do |publisher|
+            publisher.book == self
+        end
+    end
+
+    def authors
+        publishers.collect do |publisher|
+            publisher.author
+        end.uniq
     end
 end

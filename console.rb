@@ -14,6 +14,9 @@ p1 = Publisher.new(b1, a1)
 p2 = Publisher.new(b2, a2)
 p3 = Publisher.new(b2, a1)
 p4 = Publisher.new(b3, a2)
+p4 = Publisher.new(b1, a2)
+p5 = Publisher.new(b3, a1)
+p6 = Publisher.new(b3, a1)
 
 a1.books
 
@@ -22,6 +25,8 @@ a1.write_book("horror", 400)
 a1.total_words
 
 Author.most_words
+
+b3.authors
 
 binding.pry
 
